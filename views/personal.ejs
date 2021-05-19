@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Archived</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+	<!----- STYLESHEET REFS - BOOTSTRAP -----------------------> 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	
+<style> 
+container p-5{
+	width:100%;
+	height:90%;
+}；
+ul{
+	width:80%;
+	height:90%;};
+</style> 
+	
+
+</head>
+
+
+
+<body>
+	<header id="main-header">
+		<!--  Navigation Bar  ------------------------------------------------------------------------------------------------------------>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		    <div class="container-fluid justify-content-between">
+			  
+			<!--  Logo  ------------------------------------------------------------------------------------------------------------------>
+				<a class="navbar-brand" href="/searchLogged/<%=user._id%>" methond="GET"><img src="https://i.imgur.com/4QnWsts.png" height=40px></a>
+
+			<!-- Search Form ------------------------------------------------------------------------------------------------------------->	
+				<form class="form-inline" action="/resultsLogged/<%=user._id%>" methond="GET">
+				   <input class="form-control mr-sm-2" type="search" placeholder="Search for a title" aria-label="Search" name="search" style="width:700px;"> 
+				    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" >
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+						<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+						</svg>
+					</button>
+			    </form>
+			
+			<!-- Account Part ------------------------------------------------------------------------------------------------------------->
+			    <form class="d-flex">
+					<a href='/user/<%=user._id%>' class="text-secondary mr-sm-2">
+						<h4 style="margin-top: 5px; margin-right: 20px; color:#ad8d53;">Hi, <%=user.email%></h4></a>
+					<a href="/log-in" class="btn btn-secondary">Log out</a>
+			    </form>
+				
+			</div> <!-- container -->
+		</nav> <!-- nav bar -->
+	</header>
+	
+					
+	<!--- ACCOUNT DETAILS -------------------------------------------------->		
+
+	
+	<div class="container p-5">
+	<div>
+	<h2>Account Details</h2>
+	<div>
+		<table class="table table-hover">
+		  <thead>
+			<tr>
+			  <th scope="col">Cart</th>
+			  <th scope="col"><%=user.buy%></th>
+			  <th scope="col"><a href="https://www.paypal.com/us/signin"><button class="btn btn-outline-success my-2 my-sm-0" type="submit"  value=">" >Checkout</button></a></th>
+				
+			  
+			  </tr>
+		  </thead>
+		  <tbody>
+			  
+			<tr>
+			  <th scope="row">Seller ID</th>
+			  <td><%=user._id%></td>
+			</tr>
+
+			<tr>
+			  <th scope="row">Email Address</th>
+			  <td><%=  user.email %></td>
+			</tr>
+
+			<tr>
+			  <th scope="row">Shipping Address</th>
+			  <td><%=  user.address%></td>
+			</tr>
+			  
+			<tr>
+			  <th scope="row">Phone Number</th>
+			  <td><%=  user.phone%></td>
+			</tr>
+			  
+			<tr>
+			  <th scope="row">My Item ID</th>
+			  <td><%=user.sell%></td>
+			</tr>
+
+			<tr>
+			  <th scope="row">My Item Price</th>
+			  <td>$<%=user.sellPrice%></td>
+			</tr>
+			 
+
+		  </tbody>
+		</table>
+
+		<!---
+		<h3> My Seller ID    : <%=user._id%></h3>
+		<h3> My Seller Email : <%=  user.email %></h3>
+		<!-- <h2>user.password=<%=  user.password%></h2> 
+		<!-- <h2>Item        : =<%=user.buy%></h2>
+	
+		
+		<a href="/detailsLogged/<%=user._id%>?search=<%=user.buy%>">Item Details</a> 
+		<h2>Item ID for sale:  =<%=  user.sell%><br>
+			Price: $<%=user.sellPrice %></h2>
+		<a href="/detailsLogged/<%=user._id%>?search=<%=user.sell%>">Return to item listing</a>
+		<h2>Address : <%=  user.address%></h2>
+		<h2>Phone Number : <%=  user.phone%></h2> ---> 
+		
+	</div>
+	<br>
+		
+	
+	<!--- UPDATE DETAILS -------------------------------------------------->		
+		
+	<div style="width: 120%;">
+		<h2>Update Details</h2><br>
+	
+			<form class="form-inline" action="/user/<%=user._id%>?_method=PUT" method="POST" >
+				<div class="form-group row">
+					<label for="exampleInputEmail1" class="col-sm-2 col-form-label">Email</label>
+					<div class="col-sm-10">
+					<input type="text" class="form-control" id="exampleInputEmail1" name="user[email]" aria-describedby="emailHelp"  value="<%= user.email%>">
+					</div>
+				</div>
+				<div class="form-group row" style="margin-left: 12px;">
+					<label for="exampleInputEmail1" class="col-sm-2 col-form-label">Password</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="exampleInputEmail1" name="user[password]" aria-                                                             describedby="emailHelp" value="<%= user.password%>" >
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="exampleInputEmail1" class="col-sm-2 col-form-label">Cart</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="exampleInputEmail1" name="user[buy]" aria-                                                               describedby="emailHelp" value="<%= user.buy%>">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="exampleInputEmail1" class="col-sm-2 col-form-label">Item ID</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="exampleInputEmail1" name="user[sell]" aria-                                                             describedby="emailHelp" value="<%=user.sell%>">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="exampleInputEmail1" class="col-sm-2 col-form-label">Item Price</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="exampleInputEmail1" name="user[sellPrice]" aria-                                                             describedby="emailHelp"  value="<%=user.sellPrice%>">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="exampleInputEmail1" class="col-sm-2 col-form-label">Shipping Address</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="exampleInputEmail1" name="user[address]" aria-                                                             describedby="emailHelp" value="<%=user.address%>">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="exampleInputEmail1" class="col-sm-2 col-form-label">Phone Number</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="exampleInputEmail1" name="user[phone]" aria-                                                             describedby="emailHelp" value="<%=user.phone%>">
+					</div>
+				</div>
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit"  value=">" >Update</button>
+			</form>
+
+
+			</div>
+		
+
+	<!-- <a href="/blogs/=blog._id%>/edit">edit </a> -->
+	<!-- <form action='/blogs/=blog._id%>?_method=DELETE'method="POST">		<button>Delete</button>
+	</form> -->
+		</div>
+</div>
+</body>
+<html>

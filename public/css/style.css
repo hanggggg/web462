@@ -1,0 +1,152 @@
+body{
+	background-color: #f0e6cc;
+	/* background: linear-gradient(to bottom, #66ccff 0%, #ffffff 100%); */
+	font-family: Tahoma;
+}
+
+
+a{
+	color:#A38A00;
+	text-decoration: none;
+}
+
+
+
+.description{
+	background-color: white; 
+	border-radius: 5px; 
+	width: 100%;
+	padding-left: 15px; 
+	padding-right: 15px; 
+	padding-top: 10px; 
+	padding-bottom: 10px;
+	
+}
+
+.card-body {
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.container{
+	background-color: #ffffff;
+	width:90%;
+	height:50px;
+	margin:auto;
+	overflow:hidden;
+	position:relative;
+}
+
+.form-group{
+	width:20%;
+	margin:auto;
+}
+
+.form-check{
+	width:20%;
+	margin:auto;
+}
+
+.details {
+	width:95%;
+	margin:auto;
+}
+
+.sellers {
+	font-size:150%;
+}
+
+.desc {
+	font-size:95%;
+	padding-bottom: 20px;
+}
+
+.b{
+	width:20%;
+	margin:auto;
+}
+
+#main-header{
+	background-color: #ffffff;
+	color:#000000;
+	border-radius: 10px;
+}
+
+.center{
+	text-align:center;
+}
+
+.container div{
+	position:absolute;
+	float:left;
+    text-align:left;
+	left:10px;
+	top:5px;
+}
+
+.container #right{
+	position:absolute;
+	float:right;
+	text-align:right;
+	right:10px;
+	top:15px;
+}
+
+.login-body {
+	height: 500px; 
+	justify-content: center;
+	border-radius: 5px;
+	padding-top: 50px;
+	background-color: white;
+}
+
+.sellers {
+	border-radius: 5px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding-top: 10px; 
+	padding-bottom: 10px;
+}
+
+.thumbnail {
+	font-family: Arial;
+	background-color: white;
+	border-radius: 5px;
+	margin-top: 20px; 
+	padding-top: 10px; 
+	padding-bottom: 10px; 
+	padding-left: 10px; 
+	padding-right: 10px; 
+}
+
+.container-p-5 {
+	height: 500px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding-bottom: 25px;
+}
+
+#g {
+	height: 100%;
+    margin: 0;
+	background-color: #f0e6cc;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  	/* background-image: linear-gradient(to bottom right, rgb(255,180,85), rgb(254,230,130)); */
+}
+
+#h1.description-box {
+	padding-top: 15px;
+	padding-bottom: 15px; 
+	padding-left: 15px; 
+	padding-right: 15px; 
+}
+
+.seller-modules {
+	width: 400px;
+	margin-right: 20px;
+}
+
+<style>
+    #navBarSearchForm input[type=text]{width:430px !important;}
+</style>

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+		<title>Sign up for Archived</title>
+	
+	<!----- STYLESHEET REFS - BOOTSTRAP --------------------- -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	
+<script>
+		
+</script>
+	
+</head>
+	
+<head>
+	<title>Sign Up</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+	
+<body id="g">
+	
+	<header id="main-header">
+
+		<!--  Navigation Bar  ------------------------------------------------------------------------------------------------------------>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid justify-content-between">
+
+			<!--  Logo  ------------------------------------------------------------------------------------------------------------------>
+				<a class="navbar-brand" href="/search" methond="GET"><img src="https://i.imgur.com/4QnWsts.png" height=40px></a>
+
+			<!-- Search Form ------------------------------------------------------------------------------------------------------------->	
+				<form class="form-inline" action="/results" methond="GET">
+				   <input class="form-control mr-sm-2" type="search" placeholder="Search for a title" aria-label="Search" name="search" style="width:700px;"> 
+					   <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" >
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+						<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+						</svg>
+					</button>
+				 </form>
+
+			<!-- Account Part ------------------------------------------------------------------------------------------------------------->
+				<form class="d-flex align-middle">
+					<p>
+						<a href="/emailCheck">Sign up</a>
+						or 
+						<a href="/log-in">Log in</a>
+					</p>
+				</form>
+
+			</div> <!-- container -->
+		</nav> <!-- nav bar -->
+
+	</header>
+	<%try{ VerifCode }catch(e){ console.log("reset VerifCode ");var VerifCode=0}%>
+	<%try{ UserEmail }catch(e){ }%>
+
+	<div class="container p-5">
+		<center><h4 class="mb-5"><b>Sign up</b></h4></center>
+		<form action="/emailCheck" method="POST">
+			<div class="form-group row">
+				<label for="exampleInputEmail1" class="col-sm-2 col-form-label">Email</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="exampleInputEmail1" name="user[email]" aria-describedby="emailHelp" value="462yuhangtest@gmail.com">
+				</div>
+			</div>
+			<%if(VerifCode==1){%>
+			<h3>A verification email has been sent to your email address (<%=UserEmail%>)!
+			
+			</h3>	
+			<%}else{%>
+			<!-- <h3>Please do not modify the mailbox here without any purpose, otherwise it will result in spam(You can test it with your own email)!
+				Each click of this button（Email check） will send an email to the email address above!
+			
+			</h3>	 -->
+			<button type="submit" class="btn btn-primary mt-4">Begin account creation</button>
+			<%}%>
+	
+		</form>
+	
+	</div>
+
+		<!----- STYLESHEET REFS - BOOTSTRAP -----------------------> 
+		<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js" integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d" crossorigin="anonymous"></script>
+
+</body>
+</html>

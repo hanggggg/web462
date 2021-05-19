@@ -1,0 +1,120 @@
+@import "style.css";
+
+.ad {
+	width: 100%;
+	height: 500px;
+	background: rgb(255,190,92);
+	background: linear-gradient(90deg, rgba(255,190,92,1) 12%, rgba(255,241,118,1) 85%);
+}
+
+.ad h1 {
+	padding-top: 150px;
+	padding-bottom: 20px;
+}
+
+.ad p {
+	padding-bottom: 20px;
+}
+
+.ad img {
+	width: 45%;
+	max-height: 500px;
+	padding-right: 20px;
+}
+
+#ad-desc {
+	padding-right: 10%;
+}
+
+.category-container {
+	margin-left: 30px;
+	margin-right: 30px;
+	padding: 10px;
+	width:100%;
+	height: 50%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.category-title {
+	margin-left: 30px;
+	margin-top: 35px;
+}
+
+.category-item {
+	width: 350px;
+	height: 350px;
+	background-color: blue;
+	text-align: center;
+	font-size: 20px;
+	display: flex;
+	flex-direction: column;
+}
+
+.category-item a {
+	padding: 15px;
+	text-decoration-line: none;
+}
+
+.category-item a:hover {
+	color: #9e763a;
+}
+
+.category-item a:link, a:visited {
+	color: black;
+}
+
+.category-item a:link:active, a:visited:active {
+	text-decoration: underline;
+	color: #9e763a;
+}
+
+.card {
+	width: 300px;
+	height: 375px;
+	margin-bottom: 10px; 
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.card-body{
+	width: 90%;
+}
+
+.card a {
+	text-decoration-line: none;
+}
+
+.card a:hover {
+	color: #9e763a;
+}
+
+.card a:link, a:visited {
+	color: black;
+}
+
+.card a:link:active, a:visited:active {
+	text-decoration: underline;
+	color: #9e763a;
+}
+
+.card img {
+	max-width: 300px;
+	max-height: 250px;
+	object-fit: contain;
+}
+
+.category-button {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background-color: white;
+	margin: auto;
+}
+
+.user-info{
+	justify-content: right;
+}

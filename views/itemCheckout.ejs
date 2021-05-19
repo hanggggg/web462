@@ -1,0 +1,166 @@
+<head>
+	<title>Archived</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+		<!----- STYLESHEET REFS - BOOTSTRAP -----------------------> 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js" integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d" crossorigin="anonymous"></script>
+	
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	
+<style> 
+container{
+	width:90%;
+	height:90%;
+}；
+ul{
+	width:80%;
+	height:90%;};
+</style>
+	
+<script>
+	function checkOutAlert()
+	{
+		alert("Continue to payment via PayPal")
+	}
+	function addFavoritesAlert()
+	{
+		alert("Please log in to use this feature")
+	}
+</script>	
+
+</head>
+
+
+
+<body>
+	<header id="main-header">
+	
+		<!--  Navigation Bar  ------------------------------------------------------------------------------------------------------------>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		    <div class="container-fluid justify-content-between">
+			  
+			<!--  Logo  ------------------------------------------------------------------------------------------------------------------>
+				<a class="navbar-brand" href="/searchLogged/<%=user._id%>" methond="GET"><img src="https://i.imgur.com/4QnWsts.png" height=40px></a>
+
+			<!-- Search Form ------------------------------------------------------------------------------------------------------------->	
+				<form class="form-inline" action="/resultsLogged/<%=user._id%>" methond="GET">
+				   <input class="form-control mr-sm-2" type="search" placeholder="Search for a title" aria-label="Search" name="search" style="width:700px;"> 
+				    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" >
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+						<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+						</svg>
+					</button>
+			    </form>
+			
+			<!-- Account Part ------------------------------------------------------------------------------------------------------------->
+			    <form class="d-flex">
+					<a href='/user/<%=user._id%>' class="text-secondary mr-sm-2">
+						<h4 style="margin-top: 5px; margin-right: 20px; color:#ad8d53">Hi, <%=user.email%></h4></a>
+					<a href="/log-in" class="btn btn-secondary">Log out</a>
+			    </form>
+				
+			</div> <!-- container -->
+		</nav> <!-- nav bar -->
+		</header>
+	
+<div>
+	<br><h2>Review Your Order</h2><br>
+	<table class="table table-hover">
+		  <tbody>		  
+			<tr>
+			  <th scope="row">My ID</th>
+			  <td><%=user._id%></td>
+			</tr>
+
+			<tr>
+			  <th scope="row">Email Address</th>
+			  <td><%=  user.email %></td>
+			</tr>
+
+			<tr>
+			  <th scope="row">Shipping Address</th>
+			  <td><%=  user.address%></td>
+			</tr>
+			  
+			<tr>
+			  <th scope="row">Phone Number</th>
+			  <td><%=  user.phone%></td>
+			</tr>
+	
+		  </tbody>
+		</table>
+	
+	<div style="margin-bottom: 20px;">
+		<!-- <h2>My Buyer ID: <%=user._id%></h2>
+		<h2>Email Address: <%=  user.email %></h2>
+		<!-- <h2>user.password=<%=  user.password%></h2> 
+		<h2>Shipping Address: <%=  user.address%></h2>
+		<h2>Phone Number: <%=  user.phone%></h2> -->
+		<br>
+
+		<div class="checkout" style="background-color: #000000; color: #FFFFFF; height: 50px; padding-top: 1px; margin-bottom: 20px;"><h3>Confirm Details</h3></div>
+		<table class="table table-hover">
+		  <tbody>		  
+			<tr>
+			  <th scope="row">Item ID</th>
+			  <td><%=seller.sell%></td>
+			</tr>
+
+			<tr>
+			  <th scope="row">Item Price</th>
+			  <td>$<%=seller.sellPrice %>.00</td>
+			</tr>
+
+			<tr>
+			  <th scope="row">Seller Email</th>
+			  <td><%=seller.email%></td>
+			</tr>
+			  
+			<tr>
+			  <th scope="row">Seller Phone Number</th>
+			  <td><%=seller.phone%></td>
+			</tr>
+	
+		  </tbody>
+		</table>
+		
+		
+		<!-- <h2>Item ID:     <%=seller.sell%></h2>	
+		<a href="/detailsLogged/<%=user._id%>?search=<%=user.buy%>">Item Details</a>		
+		<h2>Item Price: $<%=seller.sellPrice %>.00</h2>
+		<h2>Seller Email: <%=seller.email%></h2>
+		<h2>Seller Phone Number: <%=seller.phone%></h2> -->
+		
+		<form class="form-inline" action="/itemCheckout/<%=user._id%>/<%=seller.email%>?_method=PUT" method="POST" >
+							<label>&nbsp;&nbsp;Email&nbsp;</label>
+							<input type ="text" name="user[email]" value="<%= user.email%>">
+							<!-- <label>Password</label>
+							<input type ="text" name="user[password]" value="<%= user.password%>">
+							<label>Buy</label>  -->
+							<label>&nbsp;&nbsp;My Address&nbsp;</label>
+							<input type ="text" name="user[address]" value="<%=user.address%>">
+							<label>&nbsp;&nbsp;My Phone Number&nbsp;</label>
+							<input type ="text" name="user[phone]" value="<%=user.phone%>">
+			
+                            <label>&nbsp;&nbsp;Item ID&nbsp;</label>
+							<input  type ="text" readonly="readonly" name="user[buy]" value="<%=seller.sell%>">
+			                <label>&nbsp;&nbsp;Seller Email&nbsp;</label>
+							<input  type ="text" readonly="readonly"  value="<%=seller.email%>">
+			
+							<!-- <label>The ID of book I want to sell</label>
+							<input type ="text" name="user[sell]" value="">				 -->
+							<!-- <label>Sell Price</label>
+							<input type ="text" name="user[sellPrice]" value="<%=user.sellPrice%>"> -->
+							<button class="btn btn-outline-success my-2 my-sm-0" type="submit" value=">">Update information and submit</button>	
+		</form>
+		<a href="https://www.paypal.com/us/signin" style="color: white;"><button onclick="checkOutAlert()" class="btn btn-primary my-2 my-sm-0" type="button" value=">" style="margin-bottom: 50px; margin-left: 5px;">Continue to payment</button></a>
+	</div>
+		
+	<!-- <a href="/blogs/=blog._id%>/edit">edit </a> -->
+	<!-- <form action='/blogs/=blog._id%>?_method=DELETE'method="POST">		<button>Delete</button>
+	</form> -->
+</div>

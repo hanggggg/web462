@@ -1,0 +1,7 @@
+/* everything here is hardcoded into the results pages */
+
+.card-img-top {
+    max-width: 100%;
+	max-height: 200px;
+	object-fit: scale-down;
+}

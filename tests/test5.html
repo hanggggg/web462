@@ -1,0 +1,71 @@
+<h1>Result page!</h1>
+<form action="/search" methond="GET">
+	<input type="submit" value="Go back">
+</form>
+<ul>
+	
+	
+	
+	<% data["items"].forEach(function(argument){ %>
+		
+		
+	
+	<% function myFunc(argument) { %>
+	<%	try {%>
+		<div class="card" style="width: 18rem;">
+			<img src="<% ["argument"]["volumeInfo"]["imageLinks"]["thumbnail"] %>" alt="wow! this is a bad picture!" width="250" height="450" class="card-img-top">
+			<div class="card-body">
+    		<h5 class="card-title">Card title</h5>
+    		<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    		<a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+		</div>
+	<%	} catch(e) {  %>
+			
+	<%	}%>
+	<%}%>
+	    <% myFunc(argument)  %>
+  
+		<li>Title:
+		<%= argument["volumeInfo"]["title"];	%>
+		
+		</li>
+	    <li>
+		publishedDate:
+		<%= argument["volumeInfo"]["publishedDate"];	%>
+	    </li>
+	    <li>
+		pageCount:
+		<%= argument["volumeInfo"]["pageCount"];	%>
+	    </li>
+	    <li>
+		averageRating:
+		<%= argument["volumeInfo"]["averageRating"];	%>
+	    </li>
+	    <li>
+		language:
+		<%= argument["volumeInfo"]["language"];	%>
+	    </li>
+	    <li>
+		description:
+		<%= argument["volumeInfo"]["description"];	%>
+	    </li>
+	    <li>
+		----------------------------------------------------------------------
+	    </li>
+	<%});%>
+	
+	<%for(var i=0;i<data["items"].length;i++){%>
+	<li>
+			<%= data["items"][i]["volumeInfo"]["title"]	%>
+	</li>	
+	<%= data["items"][i]["volumeInfo"]["readingModes"]["text"]	%>
+	        
+		
+			
+			
+	<%}%>
+	
+</ul>
+</body>
+</html>

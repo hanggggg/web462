@@ -1,0 +1,276 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+		<title>Archived</title>
+	
+	<!----- STYLESHEET REFS - BOOTSTRAP --------------------- -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+<style> 
+container{
+	width:90%;
+	height:90%;
+}；
+ul{
+	width:80%;
+	height:90%;};
+</style> 
+	
+
+</head>
+
+<body>
+	<header id="main-header">
+	
+		<!--  Navigation Bar  ------------------------------------------------------------------------------------------------------------>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		    <div class="container-fluid justify-content-between">
+			  
+			<!--  Logo  ------------------------------------------------------------------------------------------------------------------>
+				<a class="navbar-brand" href="/searchLogged/<%=user._id%>" methond="GET"><img src="https://i.imgur.com/4QnWsts.png" height=40px></a>
+
+			<!-- Search Form ------------------------------------------------------------------------------------------------------------->	
+				<form class="form-inline" action="/resultsLogged/<%=user._id%>" methond="GET">
+				   <input class="form-control mr-sm-2" type="search" placeholder="Search for a title" aria-label="Search" name="search" style="width:700px;"> 
+				    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" >
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+						<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+						</svg>
+					</button>
+			    </form>
+			
+			<!-- Account Part ------------------------------------------------------------------------------------------------------------->
+			    <form class="d-flex">
+					<a href='/user/<%=user._id%>' class="text-secondary mr-sm-2">
+						<h4 style="margin-top: 5px; margin-right: 20px; color:#ad8d53;">Hi, <%=user.email%></h4></a>
+					<a href="/log-in" class="btn btn-secondary">Log out</a>
+			    </form>
+				
+			</div> <!-- container -->
+		</nav> <!-- nav bar -->
+		
+	</header>
+	
+	
+
+<!-- <h3>Search results for "<%=SearchWords%>" </h3>
+<form action="/search" methond="GET" >
+	<input type="submit" value="Go back" > 
+</form> -->
+	
+	
+	<!-- traverse  argument's elements with argument=data["items"]   -->
+	
+	<!-- <div class="row"> -->
+	
+
+		
+		
+		<!-- myFunc creating for checking pictures problem -->
+	 	
+			<%function myFunc(argument) {%>
+				<% try { %>
+		
+				<img src="<%=data["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"]%>" alt="wow! this is a bad picture!" width="200" height="600" class="card-img-top">
+		
+				<% } catch(e) { } %>
+			<% } %>			
+		<!-- run the myFunc -->
+	
+<div class="row"> <!-- THUMBNAIL AND DESCRIPTION IN ONE ROW ------------->
+		<div class="col-sm-4 ">
+				<div class="thumbnail">
+						<!-- <!-- traverse  argument's elements with argument=argument   -->  
+						<div class="card-body">
+							<center><b><h4 class="card-title"><%= data["items"][0]["volumeInfo"]["title"];	%></h4></b></center>
+								<p class="card-text"> <% myFunc(data["items"][0])  %> </p>
+								<!-- <a href="#" class="btn btn-primary">View Details</a> -->
+								<!-- <form class="form-inline" action="/results" methond="GET" name="search">
+								<button class="btn btn-outline-success my-2 my-sm-0" type="submit" >View Details</button>
+								</form> -->
+						<!-- </div> -->
+							
+							<!-- <form class="form-inline" action="/user/<%=user._id%>?_method=PUT" method="POST" > -->
+							<!-- <label>Email</label>
+							<input type ="text" name="user[email]" value="<%= user.email%>">
+							<label>Password</label>
+							<input type ="text" name="user[password]" value="<%= user.password%>">
+							<label>Buy</label> -->
+							<!-- <input type ="text" name="user[buy]" value="<%=data['items'][0]["id"]%>"> -->
+							<!-- <label>Sell</label>
+							<input type ="text" name="user[sell]" value="<%= user.sell%>"> -->
+							
+									<!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit"  value=">" >I want to buy it </button>	
+							</form> -->
+							
+							<form class="form-inline" action="/user/<%=user._id%>?_method=PUT" method="POST" >
+								<!-- <label>Email</label>
+								<input type ="text" name="user[email]" value="<%= user.email%>">
+								<label>Password</label>
+								<input type ="text" name="user[password]" value="<%= user.password%>">
+								<label>Buy</label>
+								<input type ="text" name="user[buy]" value="<%= user.buy%>"> -->
+								<h6>Item ID: </h6>
+								<input  type ="text"  name="user[sell]" value="<%=data['items'][0]["id"]%>"> 
+								<!-- <label>Sell Price</label>
+								<input type ="text" name="user[sellPrice]" value="<%=user.sellPrice%>"> -->
+								
+								<div style="margin-left: 10px;"><button class="btn btn-outline-success my-2 my-sm-0" type="submit"  value=">" >Become a seller</button></div>
+							</form>
+						</div> <!---- END OF CARD BODY -----------------> 
+				</div> <!-- END OF THUMBNAIL --------------------------->
+		</div> <!-- END OF COLUMN -------------------------------------->
+
+	<!-- <nav id="navbar-example2" class="navbar navbar-light bg-light px-3">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link" href="#fat">Description</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#mdo">Sellers</a>
+    </li>
+	  <li class="nav-item">
+      <a class="nav-link" href="#one">Buyers</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><a class="dropdown-item" href="#one">buyers</a></li>
+        <li><a class="dropdown-item" href="#two">two</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#three">three</a></li>
+      </ul>
+    </li>
+  </ul>
+	</nav> -->
+	
+	<!---- BOOK DESCRIPTION --------------------->	
+	<div class="col-sm-8 ">
+		<div class="details">
+		 <h2>Description</h2>
+			<p class="desc"> <%= data["items"][0]["volumeInfo"]["description"]	%></p>
+			 <p class="card-text">
+			 <h5> Additional Details </h5>  
+				Date Published: <%= data["items"][0]["volumeInfo"]["publishedDate"]; %> 
+				<br> Page Count: <%= data["items"][0]["volumeInfo"]["pageCount"]; %> 
+				<br> Average Rating (out of 5 stars): <%= data["items"][0]["volumeInfo"]["averageRating"]; %> 									<br> Language: <%= data["items"][0]["volumeInfo"]["language"]; %> 
+		</div> <!-- end of description --> 
+		<br>
+		<h4 id="mdo">Seller List for Book ID: <input type ="text" disabled="disabled" name="user[buy]" value="<%=data['items'][0]["id"]%>"></h4>
+
+			<!--- SELLER LIST ------------------------------->
+			<div>
+				<%for(var i=0;i<5&&i<sell.length;i++){%>
+				<%if(sell.length==0){%>
+					<h2>There are 0 seller(s) available</h2>
+				<%break }else{%>
+
+				<div class="row">
+					<div class="card" style="width:100rem;height:20rem;" >	
+						<div class="card-body"> <!--- SELLER LISTED BY EMAIL ---> 
+							<b><h6>Seller Email: <%=sell[i].email%></h6></b>
+							<h6>Seller Location: <%=sell[i].address%> </h6>
+							<h6>Seller Phone Number: <%=sell[i].phone%> </h6>
+							<h6>Price: $<%=sell[i].sellPrice%>.00</h6>
+						
+						<form class="form-inline" action="/itemCheckout/<%=user._id%>/<%=sell[i].email%>" method="GET" >
+										<!-- <label>Email</label>
+										<input type ="text" name="user[email]" value="<%= user.email%>">
+										<label>Password</label>
+										<input type ="text" name="user[password]" value="<%= user.password%>">
+										<label>Buy</label> -->
+										<!-- <label>Sell</label>
+										<input type ="text" name="user[sell]" value="<%= user.sell%>"> -->
+							<h6>Book ID: 
+							<input type ="text" disabled="disabled" name="user[buy]" value="<%=data['items'][0]["id"]%>"></h6>
+							<div>&nbsp;&nbsp;&nbsp;</div>
+							
+							<div><button class="btn btn-success my-2 my-sm-0" type="submit"  value=">">Buy from this seller</button></div>
+						</form>
+					 </div> <!-- END OF SELLER CARD BODY --------->
+					</div><!--- END OF SELLER CARD ----->
+				   </div> <!-- END OF ROW ------>
+				<%}}%>
+			<div>
+		</div>
+	</div> <!--- END OF ROW CONTAINER --------->	
+		
+		 
+		 
+       <!-- <div class="card">
+			<div class="thumbnail"> 
+            	    
+					<%for(var i=0;i<5&&i<buyer.length;i++){%>
+					<%if(buyer[i].email==null){%>
+						<h2>There is 0 buyer</h2>
+					<%break }else{%>
+
+
+						<!-- <div>Seller=< buy[i].email%></div> -->
+						<!-- <div>Address=<%=buyer[i].address%></div>
+						<div>Phone=<%=buyer[i].phone%></div>
+						<div>Price=<%=buyer[i].sellPrice%></div>
+						<!-- <form class="form-inline" action="/itemCheckout/<%=user._id%>/<buyer[i]._id%>?_method=PUT" method="POST" > -->
+											<!-- <label>Email</label>
+											<input type ="text" name="user[email]" value="<%= user.email%>">
+											<label>Password</label>
+											<input type ="text" name="user[password]" value="<%= user.password%>">
+											<label>Buy</label> -->
+											<!-- <input type ="text" name="user[buy]" value="<%=data['items'][0]["id"]%>"> -->
+											<!-- <label>Sell</label>
+											<input type ="text" name="user[sell]" value="<%= user.sell%>"> -->
+
+											<!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit"  value=">" 
+											>I want to buy it </button>	 -->
+						<!-- </form> -->
+					<%}}%>
+				
+				
+			</div>	
+    </div>
+   
+	
+		<!-- <sell.forEach(function(argument){%>
+		<div>Seller=<=argument.email%></div>
+		<div>Address=<=argument.address%></div>
+		<div>Phone=<=argument.phone%></div>
+		<div>Price=<=argument.sellPrice%></div>
+	<form class="form-inline" action="/itemCheckout/<=user._id%>/<=argument._id%>?_method=PUT" method="POST" >
+							<!-- <label>Email</label>
+							<input type ="text" name="user[email]" value="<= user.email%>">
+							<label>Password</label>
+							<input type ="text" name="user[password]" value="<= user.password%>">
+							<label>Buy</label> -->
+							<!-- <input type ="text" name="user[buy]" value="<=data['items'][0]["id"]%>"> -->
+							<!-- <label>Sell</label>
+							<input type ="text" name="user[sell]" value="<= user.sell%>"> -->
+							<!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit"  value=">" >I want to buy it </button>	 -->
+							<!-- </form> -->
+		<!-- <div>---------------------------------</div>	 -->
+		<!-- <})>   -->
+   
+		  <!-- <h4 id="one">buyers</h4>
+
+			<div id="right">
+				<h1>Who want to buy</h1>
+				<buy.forEach(function(argument){%>
+				<div>buyer=argument.email%></div>
+				<div>Address=<argument.address%></div>
+				<div>Phone=<argument.phone%></div>
+				<})%>
+			</div>
+			</div>
+		</ul>
+	
+	
+    <!----- STYLESHEET REFS - BOOTSTRAP -----------------------> 
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js" integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d" crossorigin="anonymous"></script>
+
+</body>
+</html>

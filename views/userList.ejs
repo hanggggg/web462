@@ -1,0 +1,90 @@
+<h1>userList ejs</h1>
+
+<!-- create a new account---------------------------------------------------- -->
+<form action="/userCreate" method="POST">
+			<div class="form-group row">
+				<label for="exampleInputEmail1" class="col-sm-2 col-form-label">Email</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="exampleInputEmail1" name="user[email]" aria-describedby="emailHelp" placeholder="Email">
+				</div>
+			</div>
+	
+		<%if(userCreated==1){ %>
+		<h1>Your account has been created</h1>
+    	<%}%>
+       
+	
+			<div class="form-group row">
+				<label for="exampleInputPassword1" class="col-sm-2 col-form-label">Password</label>
+				<div class="col-sm-10">
+					<input type="password" class="form-control" id="exampleInputPassword1" name="user[password]" placeholder="Password">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="addressInput" class="col-sm-2 col-form-label">Address</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="addressInput" name="user[address]" placeholder="Address">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="phoneInput" class="col-sm-2 col-form-label">Phone</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="phoneInput" name="user[phone]" placeholder="Phone">
+				</div>
+			</div>
+			<!-- no validation, no purpose
+			<div class="form-check">
+				<center>
+					<input type="checkbox" class="form-check-input" id="exampleCheck1">
+					<label class="form-check-label" for="exampleCheck1">I accept the terms and conditions</label>
+				</center>
+			</div>
+			-->
+			<button type="submit" class="btn btn-primary mt-4">Create a new account</button>
+</form>
+<!-- create a new account---------------------------------------------------- -->
+
+<%  users.forEach(function(variable){ %>
+	<div>
+		<div>
+		<h2>user Id <%= variable._id%></h2>
+		<h2>user.email=<%=  variable.email %></h2>
+		<h2>user.password=<%=  variable.password%></h2>
+		<h2>the book I want to buy=<%=  variable.buy%></h2>
+		<h2>the book I want sell=<%=  variable.sell%>,and Price=<%=variable.sellPrice %></h2>
+		
+		<h2>My address =<%=  variable.address%></h2>
+		<h2>My phone number =<%=  variable.phone%></h2>
+			<form class="form-inline" action="/userManage/<%=variable._id%>?_method=PUT" method="POST" >
+							 <label>Email</label>
+							<input type ="text" name="user[email]" value="<%= variable.email%>">
+							<label>Password</label>
+							<input type ="text" name="user[password]" value="<%= variable.password%>">
+                            <label>The ID of book I want to buy</label>
+							<input type ="text" name="user[buy]" value="<%= variable.buy%>">
+							<label>The ID of book I want to sell</label>
+							<input type ="text" name="user[sell]" value="<%=variable.sell%>">				
+							<label>Sell Price</label>
+							<input type ="text" name="user[sellPrice]" value="<%=variable.sellPrice%>">
+							<label>My Address</label>
+							<input type ="text" name="user[address]" value="<%=variable.address%>">
+							<label>My Phone Number </label>
+							<input type ="text" name="user[phone]" value="<%=variable.phone%>">
+							
+							<button class="btn btn-outline-success my-2 my-sm-0" type="submit"  value=">" >Update the information</button>	
+		    </form>
+			<form class="form-inline" action="/userDelete/<%=variable._id%>?_method=PUT" method="POST" >
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit"  value=">" >I want to delete it </button>
+			</form>
+		<h2>---------------------------------</h2>
+	</div>
+		<!-- <h2>user.email=varible.email %></h2>
+		<h2>user.password=varible.password %>		 </h2>
+		<h2>---------------------------------</h2> -->
+		<!-- <h2>blog.body== blog.body %></h2>
+		<a href="/blogs/=blog._id%>">read more</a>
+		<a href="/blogs/=blog.title%>">title search</a> -->
+
+	</div>
+
+<%})%>

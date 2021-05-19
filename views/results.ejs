@@ -1,0 +1,184 @@
+=<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Archived</title>
+	
+	<!----- STYLESHEET REFS - BOOTSTRAP --------------------- -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	
+	<!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+	
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	
+    <style> 
+        container{
+            width:90%;
+            height:90%;
+        }；
+        ul{
+            width:80%;
+            height:90%;
+        };
+    </style> 
+</head>
+
+<body>
+	<header id="main-header">
+	
+		<!--  Navigation Bar  ------------------------------------------------------------------------------------------------------------>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		    <div class="container-fluid justify-content-between">
+			  
+			<!--  Logo  ------------------------------------------------------------------------------------------------------------------>
+				<a class="navbar-brand" href="/search" methond="GET"><img src="https://i.imgur.com/4QnWsts.png" height=40px></a>
+
+			<!-- Search Form ------------------------------------------------------------------------------------------------------------->	
+				<form class="form-inline" action="/results" methond="GET">
+				   <input class="form-control mr-sm-2" type="search" placeholder="Search for a title" aria-label="Search" name="search" style="width:700px;"> 
+				    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" >
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+						<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+						</svg>
+					</button>
+			    </form>
+			
+			<!-- Account Part ------------------------------------------------------------------------------------------------------------->
+				<form class="d-flex align-middle">
+					<p>
+						<a href="/emailCheck">Sign up</a>
+						or 
+						<a href="/log-in">Log in</a>
+					</p>
+				</form>
+				
+			</div> <!-- container -->
+		</nav> <!-- nav bar -->
+	
+	</header>
+
+	<p>
+		<h3 class="pt-3 pl-3"><b>Search results for "<%=SearchWords%>" </b></h3>
+	<!-- this button leads to the homepage and logs out of the account
+    <form action="/search" methond="GET" >
+        <input type="submit" value="Go back" class="btn btn-secondary">
+    </form>
+	
+	-->
+	</p>
+    
+    <!-- traverse  argument's elements with argument=data["items"]   --> 
+    <div class="row p-3">
+        <% data["items"].forEach(function(argument){ %>
+        <!-- myFunc creating for checking pictures problem -->
+        <%function myFunc(argument) {%>
+            <% try { %>
+            
+                <img src="<%=argument["volumeInfo"]["imageLinks"]["thumbnail"]%>" alt="wow! this is a bad picture!" class="card-img-top" style="max-width: 100%; max-height: 200px; object-fit: scale-down;">
+            
+            <% } catch(e) { } %>
+        <% } %>
+        
+		<!-- get authors array -->
+		<%function getAuthors(argument) {%>
+            <% try { %>
+            
+                <% var authors = argument["volumeInfo"]["authors"]; %>
+		
+				<!-- one author -->
+				<% if(authors.length == 1){ %>
+					<b>Author:</b> <%= authors;	%>
+				<%}%>
+				
+				<!-- more than one author -->
+				<% if(authors.length > 1){ %>
+					<b>Authors:</b>
+					<% for(var i=0; i<authors.length-1; i++) { %>
+						<%= authors[i] %>, 
+					<%}%>
+					<%= authors[authors.length-1]; %>
+				<%}%>
+            
+            <% } catch(e) { } %>
+        <% } %>
+		
+		<!-- get category array -->
+		<%function getCategories(argument) {%>
+            <% try { %>
+		
+                <% var categories = argument["volumeInfo"]["categories"]; %>
+				
+				<!-- one category -->
+				<% if(categories.length == 1){ %>
+					<b>Category:</b> <%= categories;	%>
+				<%}%>
+		
+				<!-- more than one category -->
+				<% if(categories.length > 1){ %>
+					<b>Categories:</b>
+					<% for(var i=0; i<categories.length-1; i++) { %>
+						<%= categories[i] %>, 
+					<%}%>
+					<%= categories[categories.length-1]; %>
+				<%}%>
+            
+            <% } catch(e) { } %>
+        <% } %>
+            
+        <!-- book -->
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 p-3">
+            <div class="card">
+                <% myFunc(argument)  %>
+                <div class="card-body">
+                    <center><b><h4 class="card-title"><%= argument["volumeInfo"]["title"];	%></h4></b></center>
+                    
+                   <!-- book info -->
+					<p class="card-text">
+						<% getAuthors(argument)  %><br>
+						<% if(argument["volumeInfo"]["publishedDate"]){ %>
+							<b>Date published:</b> <%= argument["volumeInfo"]["publishedDate"];	%><br>
+						<%}%>
+						<% if(argument["volumeInfo"]["pageCount"]){ %>
+							<b>Page count:</b> <%= argument["volumeInfo"]["pageCount"];	%><br>
+						<%}%>
+						<% if(argument["volumeInfo"]["averageRating"]){ %>
+							<b>Average rating:</b> <%= argument["volumeInfo"]["averageRating"];	%><br>
+						<%}%>
+					</p>
+                </div>
+				<!-- buttons -->
+				<div class="card-footer">
+					<p class="card-text"><% getCategories(argument)  %></p>
+					<form class="form-inline" action="/details" methond="GET" >		
+						<!-- <input name="search"> -->
+						<button class="btn btn-success my-2 my-sm-0" type="submit" name="search" value="<%=argument["id"]%>" >
+							View Book Details
+						</button>
+						<!--<span>&nbsp;</span>
+						<button type="button" class="btn btn-danger">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-heart" viewBox="0 0 16 16">
+								<path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"></path>
+							</svg>
+						</button>-->
+					</form>
+				</div> <!-- card-footer -->
+            </div>
+        </div>
+        
+        
+        <%});%>
+        </div> <!-- row div -->
+        
+        <!-- <%for(var i=0;i<data["items"].length;i++){%>
+        <li>
+                <%= data["items"][i]["volumeInfo"]["title"]	%>
+        </li>	
+        <%= data["items"][i]["volumeInfo"]["readingModes"]["text"]	%>
+                    
+        <%}%> -->
+        
+    <!----- STYLESHEET REFS - BOOTSTRAP -----------------------> 
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js" integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d" crossorigin="anonymous"></script>
+
+</body>
+</html>
